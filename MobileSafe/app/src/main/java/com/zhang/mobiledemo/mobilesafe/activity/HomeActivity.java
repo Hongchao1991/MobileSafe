@@ -1,10 +1,12 @@
 package com.zhang.mobiledemo.mobilesafe.activity;
 
 import android.app.Activity;
-import android.media.Image;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -19,23 +21,39 @@ public class HomeActivity extends Activity {
 
     @InjectView(R.id.gv_home)
     GridView gvHome;
+    @InjectView(R.id.tv_marque)
+    TextView tvMarque;
 
 
-    private String[] mItems = new String[]{"手机防盗","通讯卫士",
-            "软件管理","进程管理","流量统计","手机杀毒","缓存管理","高级工具","设置中心"};
-    private int[] mPics = new int[]{R.mipmap.home_safe,R.mipmap.home_callmsgsafe,
-            R.mipmap.home_apps,R.mipmap.home_taskmanager,R.mipmap.home_netmanager,
-    R.mipmap.home_trojan,R.mipmap.home_sysoptimize,R.mipmap.home_tools,R.mipmap.home_settings};
+    private String[] mItems = new String[]{"手机防盗", "通讯卫士",
+            "软件管理", "进程管理", "流量统计", "手机杀毒", "缓存管理", "高级工具", "设置中心"};
+    private int[] mPics = new int[]{R.mipmap.home_safe, R.mipmap.home_callmsgsafe,
+            R.mipmap.home_apps, R.mipmap.home_taskmanager, R.mipmap.home_netmanager,
+            R.mipmap.home_trojan, R.mipmap.home_sysoptimize, R.mipmap.home_tools, R.mipmap.home_settings};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.inject(this);
 
+        setTextMarquee(tvMarque);
         gvHome.setAdapter(new HomeAdapter());
+        gvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 8://设置中心
+                    startActivity(new Intent(HomeActivity.this,SettingActivity.class));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
 
-     class HomeAdapter extends BaseAdapter {
+    class HomeAdapter extends BaseAdapter {
         @Override
         public int getCount() {
             return mItems.length;
@@ -55,12 +73,20 @@ public class HomeActivity extends Activity {
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = View.inflate(HomeActivity.this, R.layout.item_home_list, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.iv_item);
-            TextView textView = (TextView)view.findViewById(R.id.tv_item);
+            TextView textView = (TextView) view.findViewById(R.id.tv_item);
             textView.setText(mItems[position]);
             imageView.setImageResource(mPics[position]);
             return view;
         }
+    }
 
-
+    public static void setTextMarquee(TextView textView) {
+        if (textView != null) {
+            textView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+            textView.setSingleLine(true);
+            textView.setSelected(true);
+            textView.setFocusable(true);
+            textView.setFocusableInTouchMode(true);
+        }
     }
 }

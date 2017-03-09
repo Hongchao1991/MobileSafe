@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -78,6 +79,7 @@ public class SplashActivity extends Activity {
     private static final int CODE_NET_ERROR = 1;
     private static final int CODE_JSON_ERROR = 2;
     private static final int CODE_ENTER_HOME = 3;
+    private SharedPreferences mPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +88,14 @@ public class SplashActivity extends Activity {
         ButterKnife.inject(this);
 
         tvVersion.setText("版本号：" + getVersion());
-        checkVersion();
+        //判断是否自动更新
+        mPref = getSharedPreferences("config", MODE_PRIVATE);
+        boolean autoUpdate = mPref.getBoolean("auto_update",true);
+        if (autoUpdate) {
+            checkVersion();
+        }else {
+            mHandler.sendEmptyMessageDelayed(CODE_ENTER_HOME,2000);//发送延时两秒钟消息,进入主界面
+        }
     }
 
     /**

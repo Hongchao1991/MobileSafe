@@ -4,37 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        style="@style/TitleStyle"
         android:text="功能列表"
-        android:textSize="22sp"
-        android:background="#8866f0"
-        android:gravity="center"
-        android:textColor="@color/black"/>
+        />
 
     <!--<com.zhang.mobiledemo.mobilesafe.view.FocusedTextView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:textColor="@color/black"-->
         <!--android:textSize="18sp"-->
-        <!--android:singleLine="true"-->
+        <!--android:lines="1"-->
         <!--android:layout_marginTop="5dp"-->
         <!--android:layout_marginBottom="5dp"-->
         <!--android:ellipsize="marquee"-->
         <!--android:text="手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士"/>-->
 
     <TextView
+        android:id="@+id/tv_marque"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:singleLine="true"
+        android:lines="1"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:ellipsize="marquee"
-        android:text="手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士"/>
+        android:text="手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士  手机卫士"/>
     <!--
     verticalSpacing="20dp"  每个按钮间的间距
     -->
