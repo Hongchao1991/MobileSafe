@@ -40,6 +40,8 @@ public class SettingItemView extends RelativeLayout {
         //根据属性名称获取属性的值
         mDescOff = attrs.getAttributeValue(NAMESPACE,"desc_off");
 
+
+
         initView();
 
 
@@ -68,6 +70,11 @@ public class SettingItemView extends RelativeLayout {
     }
 
     public void setChecked(boolean checked){
+
+        System.out.println("title="+mTitle);
+        System.out.println("descon="+mDescOn);
+        System.out.println("mdesoff="+mDescOff);
+
         //根据选择的状态，更新描述
         if (checked){
             setDesc(mDescOn);

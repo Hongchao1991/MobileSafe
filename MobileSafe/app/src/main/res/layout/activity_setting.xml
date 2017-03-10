@@ -16,6 +16,5 @@
         custom:desc_off="自动更新已关闭"
         custom:desc_on="自动更新已开启"
         custom:title="自动更新设置"
-
         />
 </LinearLayout>

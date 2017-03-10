@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.zhang.mobiledemo.mobilesafe.R;
 import com.zhang.mobiledemo.mobilesafe.view.SettingItemView;
@@ -28,18 +29,15 @@ public class SettingActivity extends Activity {
         if (autoUpdate) {
             sivUpdate.setChecked(true);
 //            sivUpdate.setDesc("自动更新已开启");
-
         } else {
             sivUpdate.setChecked(false);
 //            sivUpdate.setDesc("自动更新已关闭");
-
         }
 
 
         sivUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //判断勾选状态
                 if (sivUpdate.isChecked()) {
                     sivUpdate.setChecked(false);
