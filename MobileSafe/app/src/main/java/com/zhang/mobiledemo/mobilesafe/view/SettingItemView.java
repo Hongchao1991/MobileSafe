@@ -39,12 +39,7 @@ public class SettingItemView extends RelativeLayout {
         mDescOn = attrs.getAttributeValue(NAMESPACE,"desc_on");
         //根据属性名称获取属性的值
         mDescOff = attrs.getAttributeValue(NAMESPACE,"desc_off");
-
-
-
         initView();
-
-
     }
 
     public SettingItemView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -61,7 +56,6 @@ public class SettingItemView extends RelativeLayout {
         tvTitle = (TextView)findViewById(R.id.tv_title);
         tvDesc = (TextView)findViewById(R.id.tv_desc);
         cbStatus = (CheckBox)findViewById(R.id.cb_status);
-
         setTitle(mTitle);
     }
 
@@ -70,11 +64,7 @@ public class SettingItemView extends RelativeLayout {
     }
 
     public void setChecked(boolean checked){
-
-        System.out.println("title="+mTitle);
-        System.out.println("descon="+mDescOn);
-        System.out.println("mdesoff="+mDescOff);
-
+        cbStatus.setChecked(checked);
         //根据选择的状态，更新描述
         if (checked){
             setDesc(mDescOn);

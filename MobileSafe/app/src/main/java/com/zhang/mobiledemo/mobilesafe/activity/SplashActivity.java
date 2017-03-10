@@ -2,7 +2,6 @@ package com.zhang.mobiledemo.mobilesafe.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +13,9 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,8 @@ public class SplashActivity extends Activity {
     ProgressBar progress;
     @InjectView(R.id.tv_progress)
     TextView tvProgress;
+    @InjectView(R.id.rl_root)
+    RelativeLayout rlRoot;
 
 
     private String mVersionName;
@@ -90,12 +93,16 @@ public class SplashActivity extends Activity {
         tvVersion.setText("版本号：" + getVersion());
         //判断是否自动更新
         mPref = getSharedPreferences("config", MODE_PRIVATE);
-        boolean autoUpdate = mPref.getBoolean("auto_update",true);
+        boolean autoUpdate = mPref.getBoolean("auto_update", true);
         if (autoUpdate) {
             checkVersion();
-        }else {
-            mHandler.sendEmptyMessageDelayed(CODE_ENTER_HOME,2000);//发送延时两秒钟消息,进入主界面
+        } else {
+            mHandler.sendEmptyMessageDelayed(CODE_ENTER_HOME, 2000);//发送延时两秒钟消息,进入主界面
         }
+
+        AlphaAnimation animation = new AlphaAnimation(0.3f,1f);//1是完全显示， 0是完全透明
+        animation.setDuration(2000);//设置2秒
+        rlRoot.startAnimation(animation);//让rlRoot  设置为动画
     }
 
     /**
@@ -158,7 +165,7 @@ public class SplashActivity extends Activity {
                 @Override
                 public void onLoading(long total, long current, boolean isUploading) {
                     super.onLoading(total, current, isUploading);
-                    tvProgress.setText("下载进度"+current*100/total+"%");
+                    tvProgress.setText("下载进度" + current * 100 / total + "%");
                 }
 
                 @Override
@@ -180,13 +187,13 @@ public class SplashActivity extends Activity {
      * 测试签名：debug.keystore,有默认别名：Android；密码是：androiddebugkey  在IDE直接运行apk系统默认使用测试签名
      * 不要丢失签名文件。
      */
-    protected void installAPK(File file){
+    protected void installAPK(File file) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
         intent.setDataAndType(Uri.fromFile(file),
                 "application/vnd.android.package-archive");
 //        startActivity(intent);
-        startActivityForResult(intent,0);//如果用户取消安装，会返回结果onActivityResult 回掉方法
+        startActivityForResult(intent, 0);//如果用户取消安装，会返回结果onActivityResult 回掉方法
     }
 
     //用户取消安装回掉方法
