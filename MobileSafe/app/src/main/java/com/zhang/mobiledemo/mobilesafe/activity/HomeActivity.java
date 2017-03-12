@@ -128,12 +128,12 @@ public class HomeActivity extends Activity {
             public void onClick(View v) {
                 String password = et_password.getText().toString();
                 String savePassword = mPref.getString("password",null);
-                System.out.println("md5--->"+savePassword);
                 if (TextUtils.isEmpty(password)){
                     Toast.makeText(HomeActivity.this,"密码不能为空",Toast.LENGTH_SHORT).show();
                 }else {
                     if (MD5Utils.encode(password).equals(savePassword)){
-                        Toast.makeText(HomeActivity.this,"登录成功"+savePassword,Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(HomeActivity.this,LostFindActivity.class));
+//                        Toast.makeText(HomeActivity.this,"登录成功"+savePassword,Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }else {
                         Toast.makeText(HomeActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
@@ -182,7 +182,9 @@ public class HomeActivity extends Activity {
 
                 if ( (!TextUtils.isEmpty(password))  && !TextUtils.isEmpty(confirm)){
                     if (password.equals(confirm)){
-                        Toast.makeText(HomeActivity.this,"密码设置成功",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(HomeActivity.this,"密码设置成功",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(HomeActivity.this,LostFindActivity.class));
+
                         mPref.edit().putString("password", MD5Utils.encode(password)).commit();
                         dialog.dismiss();
                     }else {

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <TextView
+        style="@style/TitleStyle"
+        android:text="2.手机卡绑定"/>
+
+    <TextView
+        style="@style/ContentStyle"
+        android:text="通过绑定SIM卡："/>
+    <TextView
+        style="@style/ContentStyle"
+        android:text="下次重启手机如果SIM变化就会发送报警短信"/>
+
+    <com.zhang.mobiledemo.mobilesafe.view.SettingItemView
+        android:id="@+id/siv_sim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:desc_off="SIM卡没有绑定"
+        custom:desc_on="SIM卡已经绑定"
+        custom:title="点击绑定SIM卡"
+        />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/setup2"/>
+
+        <Button
+            style="@style/NextStyle"/>
+        <Button
+            style="@style/UpStyle"/>
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
